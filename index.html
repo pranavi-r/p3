@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESTURE KOMBAT - Group 2847</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Righteous&family=Bebas+Neue&display=swap');
@@ -21,11 +21,15 @@
             --purple: #9d00ff;
         }
 
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Righteous', cursive;
             background: linear-gradient(135deg, #0a0014 0%, #1a0033 50%, #0a0014 100%);
             color: white;
-            overflow: hidden;
             position: relative;
         }
 
@@ -51,18 +55,17 @@
         /* Group ID */
         .group-id {
             position: fixed;
-            top: 15px;
+            top: 8px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Black Ops One', cursive;
-            font-size: 3rem;
+            font-size: 1.8rem;
             color: var(--yellow);
             text-shadow: 
                 0 0 10px rgba(255, 215, 0, 0.8),
                 0 0 20px rgba(255, 215, 0, 0.6),
-                0 0 30px rgba(255, 215, 0, 0.4),
-                3px 3px 0 var(--red),
-                6px 6px 0 var(--blue);
+                2px 2px 0 var(--red),
+                4px 4px 0 var(--blue);
             z-index: 100;
             letter-spacing: 0.3em;
             animation: glow 2s ease-in-out infinite;
@@ -73,16 +76,15 @@
                 text-shadow: 
                     0 0 10px rgba(255, 215, 0, 0.8),
                     0 0 20px rgba(255, 215, 0, 0.6),
-                    3px 3px 0 var(--red),
-                    6px 6px 0 var(--blue);
+                    2px 2px 0 var(--red),
+                    4px 4px 0 var(--blue);
             }
             50% { 
                 text-shadow: 
                     0 0 20px rgba(255, 215, 0, 1),
                     0 0 40px rgba(255, 215, 0, 0.8),
-                    0 0 60px rgba(255, 215, 0, 0.6),
-                    3px 3px 0 var(--red),
-                    6px 6px 0 var(--blue);
+                    2px 2px 0 var(--red),
+                    4px 4px 0 var(--blue);
             }
         }
 
@@ -98,17 +100,17 @@
             display: block;
         }
 
-        /* Video feed (hidden but shows in corner) */
+        /* Video feed */
         #video-container {
             position: fixed;
-            top: 100px;
-            left: 20px;
-            width: 200px;
-            height: 150px;
-            border: 3px solid var(--blue);
-            border-radius: 10px;
+            top: 50px;
+            left: 10px;
+            width: 140px;
+            height: 105px;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 180, 255, 0.5);
             z-index: 50;
         }
 
@@ -121,23 +123,23 @@
 
         .video-label {
             position: absolute;
-            top: -25px;
+            top: -20px;
             left: 0;
             font-family: 'Bebas Neue', cursive;
-            font-size: 1rem;
+            font-size: 0.75rem;
             color: var(--blue);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
         }
 
         /* Health bars */
         .health-container {
             position: fixed;
-            top: 100px;
+            top: 50px;
             display: flex;
             justify-content: space-between;
-            width: 90%;
-            left: 5%;
+            width: 50%;
+            left: 25%;
             z-index: 60;
         }
 
@@ -147,8 +149,8 @@
 
         .health-label {
             font-family: 'Black Ops One', cursive;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
             text-transform: uppercase;
         }
 
@@ -164,13 +166,13 @@
         }
 
         .health-bar {
-            height: 40px;
+            height: 24px;
             background: rgba(0, 0, 0, 0.7);
-            border: 3px solid white;
-            border-radius: 5px;
+            border: 2px solid white;
+            border-radius: 4px;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
         }
 
         .health-fill {
@@ -182,13 +184,13 @@
 
         .player-health.left .health-fill {
             background: linear-gradient(90deg, #00b4ff, #00ffff);
-            box-shadow: 0 0 20px var(--blue);
+            box-shadow: 0 0 15px var(--blue);
         }
 
         .player-health.right .health-fill {
             background: linear-gradient(90deg, #ff0040, #ff6b9d);
             float: right;
-            box-shadow: 0 0 20px var(--red);
+            box-shadow: 0 0 15px var(--red);
         }
 
         .health-fill::before {
@@ -207,10 +209,10 @@
             100% { left: 100%; }
         }
 
-        /* Score & Round */
+        /* Game Info */
         .game-info {
             position: fixed;
-            top: 160px;
+            top: 95px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
@@ -219,43 +221,53 @@
 
         .round {
             font-family: 'Black Ops One', cursive;
-            font-size: 2rem;
+            font-size: 1.1rem;
             color: var(--yellow);
             text-shadow: 0 0 10px var(--yellow);
         }
 
         .timer {
             font-family: 'Bebas Neue', cursive;
-            font-size: 3rem;
+            font-size: 2rem;
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            margin-top: 10px;
+        }
+
+        .mode-indicator {
+            font-family: 'Righteous', cursive;
+            font-size: 0.7rem;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 2px;
         }
 
         /* Gesture indicator */
         .gesture-display {
             position: fixed;
-            bottom: 30px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
-            border: 3px solid var(--blue);
-            border-radius: 15px;
-            padding: 20px 40px;
+            border: 2px solid var(--blue);
+            border-radius: 10px;
+            padding: 8px 25px;
             z-index: 60;
-            box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .gesture-text {
             font-family: 'Black Ops One', cursive;
-            font-size: 2rem;
+            font-size: 1.1rem;
             color: var(--yellow);
             text-shadow: 0 0 10px var(--yellow);
         }
 
         .gesture-icon {
-            font-size: 4rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
         }
 
         /* Start screen */
@@ -271,6 +283,8 @@
             justify-content: center;
             align-items: center;
             z-index: 200;
+            overflow-y: auto;
+            padding: 20px;
         }
 
         #start-screen.hidden {
@@ -279,14 +293,14 @@
 
         .title {
             font-family: 'Black Ops One', cursive;
-            font-size: 5rem;
+            font-size: clamp(2rem, 6vw, 4rem);
             background: linear-gradient(45deg, var(--red), var(--yellow), var(--blue), var(--purple));
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: gradientShift 3s ease infinite;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
@@ -298,34 +312,36 @@
 
         .subtitle {
             font-family: 'Righteous', cursive;
-            font-size: 1.5rem;
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             text-align: center;
-            max-width: 600px;
-            line-height: 1.6;
+            max-width: 500px;
+            line-height: 1.4;
         }
 
         .controls-info {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid var(--blue);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px;
-            max-width: 700px;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 10px;
+            max-width: 600px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         .control-item {
             display: flex;
             align-items: center;
-            margin: 20px 0;
-            font-size: 1.3rem;
+            font-size: 0.9rem;
         }
 
         .control-emoji {
-            font-size: 3rem;
-            margin-right: 20px;
-            min-width: 60px;
+            font-size: 1.8rem;
+            margin-right: 10px;
+            min-width: 40px;
         }
 
         .control-text {
@@ -335,43 +351,48 @@
         .control-name {
             color: var(--yellow);
             font-family: 'Black Ops One', cursive;
-            font-size: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .control-desc {
+            font-size: 0.75rem;
+            opacity: 0.8;
         }
 
         .start-btn {
             background: linear-gradient(135deg, var(--red), var(--purple));
             border: none;
-            padding: 20px 60px;
+            padding: 12px 40px;
             font-family: 'Black Ops One', cursive;
-            font-size: 2rem;
+            font-size: 1.4rem;
             color: white;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: 15px;
             text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(255, 0, 64, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 0, 64, 0.5);
             transition: all 0.3s ease;
         }
 
         .start-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 0, 64, 0.7);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 0, 64, 0.7);
         }
 
         .mode-selector {
             display: flex;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 15px;
+            margin: 15px 0;
         }
 
         .mode-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid var(--blue);
-            padding: 15px 30px;
+            padding: 10px 20px;
             font-family: 'Righteous', cursive;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -379,7 +400,13 @@
         .mode-btn.active {
             background: var(--blue);
             box-shadow: 0 0 20px var(--blue);
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+
+        .mode-info {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
         }
 
         /* Game over screen */
@@ -403,9 +430,14 @@
 
         .game-over-text {
             font-family: 'Black Ops One', cursive;
-            font-size: 6rem;
-            margin-bottom: 30px;
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 20px;
             animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .winner {
@@ -422,7 +454,7 @@
         .hit-effect {
             position: fixed;
             font-family: 'Black Ops One', cursive;
-            font-size: 4rem;
+            font-size: 2.5rem;
             pointer-events: none;
             z-index: 150;
             animation: hitPop 0.5s ease-out forwards;
@@ -437,17 +469,17 @@
                 transform: scale(1.2) rotate(10deg);
             }
             100% {
-                transform: scale(1.5) rotate(20deg) translateY(-100px);
+                transform: scale(1.5) rotate(20deg) translateY(-80px);
                 opacity: 0;
             }
         }
 
         .combo-display {
             position: fixed;
-            top: 250px;
-            right: 30px;
+            top: 160px;
+            right: 20px;
             font-family: 'Black Ops One', cursive;
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--yellow);
             text-shadow: 0 0 20px var(--yellow);
             z-index: 70;
@@ -459,14 +491,80 @@
             50% { transform: scale(1.3); }
         }
 
+        /* On-screen controls for mobile/touch */
+        .touch-controls {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 80;
+        }
+
+        .touch-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--blue);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .touch-btn:active {
+            background: var(--blue);
+            transform: scale(0.95);
+        }
+
+        .touch-btn.punch { border-color: var(--red); }
+        .touch-btn.punch:active { background: var(--red); }
+        .touch-btn.block { border-color: var(--yellow); }
+        .touch-btn.block:active { background: var(--yellow); }
+        .touch-btn.uppercut { border-color: var(--purple); }
+        .touch-btn.uppercut:active { background: var(--purple); }
+        .touch-btn.special { border-color: #00ff88; }
+        .touch-btn.special:active { background: #00ff88; }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.5);
+            z-index: 80;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
-            .group-id { font-size: 2rem; }
-            .title { font-size: 3rem; }
-            .subtitle { font-size: 1rem; padding: 0 20px; }
-            .controls-info { padding: 20px; margin: 10px; }
-            .control-item { font-size: 1rem; }
-            .health-container { width: 95%; left: 2.5%; }
-            #video-container { width: 120px; height: 90px; }
+            .group-id { font-size: 1.4rem; top: 5px; }
+            .health-container { width: 70%; left: 15%; top: 40px; }
+            .health-bar { height: 18px; }
+            .health-label { font-size: 0.7rem; }
+            #video-container { width: 100px; height: 75px; top: 40px; }
+            .game-info { top: 75px; }
+            .round { font-size: 0.9rem; }
+            .timer { font-size: 1.5rem; }
+            .controls-info { grid-template-columns: 1fr; padding: 10px; }
+            .gesture-display { padding: 6px 15px; }
+            .gesture-text { font-size: 0.9rem; }
+            .gesture-icon { font-size: 1.5rem; }
+            .touch-btn { width: 50px; height: 50px; font-size: 1.2rem; }
+        }
+
+        @media (max-height: 700px) {
+            .health-container { top: 35px; }
+            .game-info { top: 70px; }
+            .round { font-size: 0.85rem; }
+            .timer { font-size: 1.4rem; }
+            #video-container { top: 35px; width: 110px; height: 82px; }
         }
     </style>
 </head>
@@ -477,41 +575,47 @@
     <div id="start-screen">
         <div class="title">GESTURE KOMBAT</div>
         <div class="subtitle">
-            Use your HANDS to fight! Show gestures to your webcam to attack, block, and unleash special moves.
+            Use your HANDS to fight! Show gestures to your webcam or use on-screen buttons to attack, block, and unleash special moves.
         </div>
 
         <div class="mode-selector">
-            <button class="mode-btn active" data-mode="primitive">PRIMITIVE MODE</button>
-            <button class="mode-btn" data-mode="full">FULL MODE</button>
+            <button class="mode-btn active" data-mode="primitive">
+                PRIMITIVE MODE
+                <div class="mode-info">Wireframe • 90 sec</div>
+            </button>
+            <button class="mode-btn" data-mode="full">
+                FULL MODE
+                <div class="mode-info">3D Characters • 150 sec</div>
+            </button>
         </div>
 
         <div class="controls-info">
             <div class="control-item">
                 <div class="control-emoji">✊</div>
                 <div class="control-text">
-                    <div class="control-name">PUNCH</div>
-                    <div>Closed fist - Quick attack</div>
+                    <div class="control-name">PUNCH (Q)</div>
+                    <div class="control-desc">Quick attack</div>
                 </div>
             </div>
             <div class="control-item">
                 <div class="control-emoji">✋</div>
                 <div class="control-text">
-                    <div class="control-name">BLOCK</div>
-                    <div>Open palm - Defend yourself</div>
+                    <div class="control-name">BLOCK (W)</div>
+                    <div class="control-desc">Defend yourself</div>
                 </div>
             </div>
             <div class="control-item">
                 <div class="control-emoji">☝️</div>
                 <div class="control-text">
-                    <div class="control-name">UPPERCUT</div>
-                    <div>Point up - Heavy attack</div>
+                    <div class="control-name">UPPERCUT (E)</div>
+                    <div class="control-desc">Heavy attack</div>
                 </div>
             </div>
             <div class="control-item">
                 <div class="control-emoji">✌️</div>
                 <div class="control-text">
-                    <div class="control-name">SPECIAL</div>
-                    <div>Peace sign - Ultimate move!</div>
+                    <div class="control-name">SPECIAL (R)</div>
+                    <div class="control-desc">Ultimate move!</div>
                 </div>
             </div>
         </div>
@@ -556,12 +660,26 @@
     <div class="game-info" style="display: none;">
         <div class="round" id="round-display">ROUND 1</div>
         <div class="timer" id="timer">90</div>
+        <div class="mode-indicator" id="mode-indicator">PRIMITIVE MODE</div>
     </div>
 
     <!-- Gesture Display -->
     <div class="gesture-display" style="display: none;">
         <div class="gesture-icon" id="gesture-icon">👊</div>
         <div class="gesture-text" id="gesture-text">READY</div>
+    </div>
+
+    <!-- Touch Controls -->
+    <div class="touch-controls" style="display: none;">
+        <button class="touch-btn punch" data-move="punch" title="Punch (Q)">✊</button>
+        <button class="touch-btn block" data-move="block" title="Block (W)">✋</button>
+        <button class="touch-btn uppercut" data-move="uppercut" title="Uppercut (E)">☝️</button>
+        <button class="touch-btn special" data-move="special" title="Special (R)">✌️</button>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint" style="display: none;">
+        Keyboard: Q=Punch, W=Block, E=Uppercut, R=Special
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
@@ -588,7 +706,9 @@
             playerBlocking: false,
             enemyBlocking: false,
             combo: 0,
-            lastHitTime: 0
+            lastHitTime: 0,
+            canAttack: true,
+            attackCooldown: 500
         };
 
         const AI = {
@@ -601,10 +721,13 @@
         let hands, camera;
         let scene, threeCamera, renderer;
         let playerCharacter, enemyCharacter;
+        let playerParts = {}, enemyParts = {};
         let particles = [];
+        let animationId;
+        let timerInterval, aiInterval;
 
         // ==========================================
-        // INITIALIZATION
+        // THREE.JS INITIALIZATION
         // ==========================================
 
         function initThreeJS() {
@@ -616,47 +739,48 @@
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x0a0014);
             
+            // Fog for atmosphere
+            scene.fog = new THREE.Fog(0x0a0014, 15, 30);
+            
             // Camera
-            threeCamera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-            threeCamera.position.z = 10;
-            threeCamera.position.y = 2;
+            threeCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+            threeCamera.position.set(0, 3, 12);
+            threeCamera.lookAt(0, 1, 0);
 
             // Renderer
             renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
             renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
             // Lighting
-            const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+            const ambient = new THREE.AmbientLight(0xffffff, 0.3);
             scene.add(ambient);
 
-            const spotLight1 = new THREE.SpotLight(0x00b4ff, 2);
-            spotLight1.position.set(-10, 10, 5);
+            const spotLight1 = new THREE.SpotLight(0x00b4ff, 3);
+            spotLight1.position.set(-8, 12, 8);
             spotLight1.castShadow = true;
+            spotLight1.shadow.mapSize.width = 1024;
+            spotLight1.shadow.mapSize.height = 1024;
+            spotLight1.angle = Math.PI / 4;
             scene.add(spotLight1);
 
-            const spotLight2 = new THREE.SpotLight(0xff0040, 2);
-            spotLight2.position.set(10, 10, 5);
+            const spotLight2 = new THREE.SpotLight(0xff0040, 3);
+            spotLight2.position.set(8, 12, 8);
             spotLight2.castShadow = true;
+            spotLight2.shadow.mapSize.width = 1024;
+            spotLight2.shadow.mapSize.height = 1024;
+            spotLight2.angle = Math.PI / 4;
             scene.add(spotLight2);
 
-            // Arena floor
-            const floorGeometry = new THREE.PlaneGeometry(30, 30);
-            const floorMaterial = new THREE.MeshStandardMaterial({
-                color: 0x1a0033,
-                roughness: 0.8,
-                metalness: 0.2
-            });
-            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-            floor.rotation.x = -Math.PI / 2;
-            floor.position.y = -2;
-            floor.receiveShadow = true;
-            scene.add(floor);
+            // Rim light
+            const rimLight = new THREE.PointLight(0x9d00ff, 2);
+            rimLight.position.set(0, 5, -5);
+            scene.add(rimLight);
 
-            // Grid
-            const gridHelper = new THREE.GridHelper(30, 30, 0x9d00ff, 0x9d00ff);
-            gridHelper.position.y = -1.9;
-            scene.add(gridHelper);
+            // Arena floor
+            createArena();
 
             // Create characters
             createCharacters();
@@ -669,76 +793,373 @@
             });
         }
 
-        function createCharacters() {
-            // Player character (left)
-            if (GAME.mode === 'primitive') {
-                const geometry = new THREE.BoxGeometry(1, 2, 0.5);
-                const material = new THREE.MeshStandardMaterial({ 
-                    color: 0x00b4ff,
-                    wireframe: true
-                });
-                playerCharacter = new THREE.Mesh(geometry, material);
-            } else {
-                const geometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
-                const material = new THREE.MeshStandardMaterial({ 
-                    color: 0x00b4ff,
-                    roughness: 0.5,
-                    metalness: 0.5
-                });
-                playerCharacter = new THREE.Mesh(geometry, material);
-            }
-            playerCharacter.position.set(-4, 0, 0);
-            playerCharacter.castShadow = true;
-            scene.add(playerCharacter);
+        function createArena() {
+            // Main floor
+            const floorGeometry = new THREE.CircleGeometry(12, 64);
+            const floorMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a0033,
+                roughness: 0.7,
+                metalness: 0.3
+            });
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = -0.01;
+            floor.receiveShadow = true;
+            scene.add(floor);
 
-            // Enemy character (right)
-            if (GAME.mode === 'primitive') {
-                const geometry = new THREE.BoxGeometry(1, 2, 0.5);
-                const material = new THREE.MeshStandardMaterial({ 
-                    color: 0xff0040,
-                    wireframe: true
+            // Inner ring
+            const ringGeometry = new THREE.RingGeometry(4, 4.2, 64);
+            const ringMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0x9d00ff, 
+                side: THREE.DoubleSide 
+            });
+            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring.rotation.x = -Math.PI / 2;
+            ring.position.y = 0.01;
+            scene.add(ring);
+
+            // Grid
+            const gridHelper = new THREE.GridHelper(24, 24, 0x9d00ff, 0x4a0066);
+            gridHelper.position.y = 0.02;
+            gridHelper.material.opacity = 0.3;
+            gridHelper.material.transparent = true;
+            scene.add(gridHelper);
+
+            // Arena posts with lights
+            const postPositions = [
+                [-6, 0, -6], [6, 0, -6], [-6, 0, 6], [6, 0, 6]
+            ];
+            
+            postPositions.forEach((pos, i) => {
+                const postGeom = new THREE.CylinderGeometry(0.2, 0.3, 4, 8);
+                const postMat = new THREE.MeshStandardMaterial({ 
+                    color: 0x333333, 
+                    metalness: 0.8 
                 });
-                enemyCharacter = new THREE.Mesh(geometry, material);
-            } else {
-                const geometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
-                const material = new THREE.MeshStandardMaterial({ 
-                    color: 0xff0040,
-                    roughness: 0.5,
-                    metalness: 0.5
-                });
-                enemyCharacter = new THREE.Mesh(geometry, material);
-            }
-            enemyCharacter.position.set(4, 0, 0);
-            enemyCharacter.castShadow = true;
-            scene.add(enemyCharacter);
+                const post = new THREE.Mesh(postGeom, postMat);
+                post.position.set(pos[0], 2, pos[2]);
+                post.castShadow = true;
+                scene.add(post);
+
+                // Post top light
+                const lightColor = i < 2 ? 0x00b4ff : 0xff0040;
+                const bulbGeom = new THREE.SphereGeometry(0.3, 16, 16);
+                const bulbMat = new THREE.MeshBasicMaterial({ color: lightColor });
+                const bulb = new THREE.Mesh(bulbGeom, bulbMat);
+                bulb.position.set(pos[0], 4.2, pos[2]);
+                scene.add(bulb);
+            });
         }
 
+        function createCharacters() {
+            if (GAME.mode === 'primitive') {
+                createPrimitiveCharacter('player', -3.5, 0x00b4ff);
+                createPrimitiveCharacter('enemy', 3.5, 0xff0040);
+            } else {
+                createFullCharacter('player', -3.5, 0x00b4ff);
+                createFullCharacter('enemy', 3.5, 0xff0040);
+            }
+        }
+
+        function createPrimitiveCharacter(type, xPos, color) {
+            // Simple wireframe box character
+            const group = new THREE.Group();
+            
+            // Body
+            const bodyGeom = new THREE.BoxGeometry(1, 1.5, 0.5);
+            const bodyMat = new THREE.MeshBasicMaterial({ 
+                color: color, 
+                wireframe: true,
+                wireframeLinewidth: 2
+            });
+            const body = new THREE.Mesh(bodyGeom, bodyMat);
+            body.position.y = 1.5;
+            group.add(body);
+            
+            // Head
+            const headGeom = new THREE.BoxGeometry(0.6, 0.6, 0.5);
+            const head = new THREE.Mesh(headGeom, bodyMat);
+            head.position.y = 2.55;
+            group.add(head);
+            
+            // Arms
+            const armGeom = new THREE.BoxGeometry(0.25, 0.8, 0.25);
+            const leftArm = new THREE.Mesh(armGeom, bodyMat);
+            leftArm.position.set(-0.75, 1.7, 0);
+            group.add(leftArm);
+            
+            const rightArm = new THREE.Mesh(armGeom, bodyMat);
+            rightArm.position.set(0.75, 1.7, 0);
+            group.add(rightArm);
+            
+            // Legs
+            const legGeom = new THREE.BoxGeometry(0.3, 0.9, 0.3);
+            const leftLeg = new THREE.Mesh(legGeom, bodyMat);
+            leftLeg.position.set(-0.25, 0.45, 0);
+            group.add(leftLeg);
+            
+            const rightLeg = new THREE.Mesh(legGeom, bodyMat);
+            rightLeg.position.set(0.25, 0.45, 0);
+            group.add(rightLeg);
+            
+            group.position.x = xPos;
+            group.rotation.y = xPos < 0 ? 0.3 : -0.3;
+            scene.add(group);
+            
+            if (type === 'player') {
+                playerCharacter = group;
+                playerParts = { body, head, leftArm, rightArm, leftLeg, rightLeg };
+            } else {
+                enemyCharacter = group;
+                enemyParts = { body, head, leftArm, rightArm, leftLeg, rightLeg };
+            }
+        }
+
+        function createFullCharacter(type, xPos, color) {
+            const group = new THREE.Group();
+            const parts = {};
+            
+            // Materials with proper shading
+            const skinMat = new THREE.MeshStandardMaterial({
+                color: type === 'player' ? 0xffdbac : 0xd4a574,
+                roughness: 0.6,
+                metalness: 0.1
+            });
+            
+            const clothMat = new THREE.MeshStandardMaterial({
+                color: color,
+                roughness: 0.4,
+                metalness: 0.2
+            });
+            
+            const accentMat = new THREE.MeshStandardMaterial({
+                color: type === 'player' ? 0x0066aa : 0xaa0033,
+                roughness: 0.3,
+                metalness: 0.4
+            });
+            
+            // Torso - muscular shape
+            const torsoGeom = new THREE.CylinderGeometry(0.35, 0.45, 1.2, 12);
+            const torso = new THREE.Mesh(torsoGeom, clothMat);
+            torso.position.y = 1.4;
+            torso.castShadow = true;
+            group.add(torso);
+            parts.body = torso;
+            
+            // Chest plate/detail
+            const chestGeom = new THREE.BoxGeometry(0.8, 0.5, 0.3);
+            const chest = new THREE.Mesh(chestGeom, accentMat);
+            chest.position.set(0, 1.6, 0.15);
+            chest.castShadow = true;
+            group.add(chest);
+            
+            // Head
+            const headGeom = new THREE.SphereGeometry(0.32, 24, 24);
+            const head = new THREE.Mesh(headGeom, skinMat);
+            head.position.y = 2.35;
+            head.scale.y = 1.1;
+            head.castShadow = true;
+            group.add(head);
+            parts.head = head;
+            
+            // Hair/helmet detail
+            const hairGeom = new THREE.SphereGeometry(0.34, 16, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+            const hairMat = new THREE.MeshStandardMaterial({
+                color: type === 'player' ? 0x2a1a0a : 0x1a0a00,
+                roughness: 0.8
+            });
+            const hair = new THREE.Mesh(hairGeom, hairMat);
+            hair.position.y = 2.4;
+            hair.rotation.x = -0.2;
+            group.add(hair);
+            
+            // Eyes (glowing)
+            const eyeGeom = new THREE.SphereGeometry(0.05, 8, 8);
+            const eyeMat = new THREE.MeshBasicMaterial({ color: color });
+            
+            const leftEye = new THREE.Mesh(eyeGeom, eyeMat);
+            leftEye.position.set(-0.1, 2.38, 0.28);
+            group.add(leftEye);
+            
+            const rightEye = new THREE.Mesh(eyeGeom, eyeMat);
+            rightEye.position.set(0.1, 2.38, 0.28);
+            group.add(rightEye);
+            
+            // Shoulders
+            const shoulderGeom = new THREE.SphereGeometry(0.2, 12, 12);
+            const leftShoulder = new THREE.Mesh(shoulderGeom, accentMat);
+            leftShoulder.position.set(-0.55, 1.85, 0);
+            leftShoulder.castShadow = true;
+            group.add(leftShoulder);
+            
+            const rightShoulder = new THREE.Mesh(shoulderGeom, accentMat);
+            rightShoulder.position.set(0.55, 1.85, 0);
+            rightShoulder.castShadow = true;
+            group.add(rightShoulder);
+            
+            // Arms
+            const upperArmGeom = new THREE.CylinderGeometry(0.12, 0.14, 0.5, 12);
+            const lowerArmGeom = new THREE.CylinderGeometry(0.1, 0.12, 0.45, 12);
+            
+            // Left arm
+            const leftUpperArm = new THREE.Mesh(upperArmGeom, skinMat);
+            leftUpperArm.position.set(-0.55, 1.5, 0);
+            leftUpperArm.castShadow = true;
+            group.add(leftUpperArm);
+            
+            const leftLowerArm = new THREE.Mesh(lowerArmGeom, skinMat);
+            leftLowerArm.position.set(-0.55, 1.05, 0);
+            leftLowerArm.castShadow = true;
+            group.add(leftLowerArm);
+            parts.leftArm = leftLowerArm;
+            
+            // Left fist
+            const fistGeom = new THREE.SphereGeometry(0.12, 12, 12);
+            const leftFist = new THREE.Mesh(fistGeom, skinMat);
+            leftFist.position.set(-0.55, 0.8, 0);
+            leftFist.castShadow = true;
+            group.add(leftFist);
+            
+            // Glove wraps
+            const wrapGeom = new THREE.TorusGeometry(0.13, 0.02, 8, 16);
+            const wrapMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+            const leftWrap = new THREE.Mesh(wrapGeom, wrapMat);
+            leftWrap.position.set(-0.55, 0.8, 0);
+            leftWrap.rotation.x = Math.PI / 2;
+            group.add(leftWrap);
+            
+            // Right arm
+            const rightUpperArm = new THREE.Mesh(upperArmGeom, skinMat);
+            rightUpperArm.position.set(0.55, 1.5, 0);
+            rightUpperArm.castShadow = true;
+            group.add(rightUpperArm);
+            
+            const rightLowerArm = new THREE.Mesh(lowerArmGeom, skinMat);
+            rightLowerArm.position.set(0.55, 1.05, 0);
+            rightLowerArm.castShadow = true;
+            group.add(rightLowerArm);
+            parts.rightArm = rightLowerArm;
+            
+            const rightFist = new THREE.Mesh(fistGeom, skinMat);
+            rightFist.position.set(0.55, 0.8, 0);
+            rightFist.castShadow = true;
+            group.add(rightFist);
+            
+            const rightWrap = new THREE.Mesh(wrapGeom, wrapMat);
+            rightWrap.position.set(0.55, 0.8, 0);
+            rightWrap.rotation.x = Math.PI / 2;
+            group.add(rightWrap);
+            
+            // Hips/belt
+            const hipGeom = new THREE.CylinderGeometry(0.4, 0.35, 0.3, 12);
+            const hips = new THREE.Mesh(hipGeom, accentMat);
+            hips.position.y = 0.75;
+            hips.castShadow = true;
+            group.add(hips);
+            
+            // Belt buckle
+            const buckleGeom = new THREE.BoxGeometry(0.15, 0.15, 0.1);
+            const buckleMat = new THREE.MeshStandardMaterial({ 
+                color: 0xffd700, 
+                metalness: 0.9, 
+                roughness: 0.1 
+            });
+            const buckle = new THREE.Mesh(buckleGeom, buckleMat);
+            buckle.position.set(0, 0.75, 0.35);
+            group.add(buckle);
+            
+            // Legs
+            const upperLegGeom = new THREE.CylinderGeometry(0.16, 0.14, 0.55, 12);
+            const lowerLegGeom = new THREE.CylinderGeometry(0.12, 0.1, 0.5, 12);
+            
+            // Left leg
+            const leftUpperLeg = new THREE.Mesh(upperLegGeom, clothMat);
+            leftUpperLeg.position.set(-0.2, 0.4, 0);
+            leftUpperLeg.castShadow = true;
+            group.add(leftUpperLeg);
+            
+            const leftLowerLeg = new THREE.Mesh(lowerLegGeom, clothMat);
+            leftLowerLeg.position.set(-0.2, 0, 0);
+            leftLowerLeg.castShadow = true;
+            group.add(leftLowerLeg);
+            parts.leftLeg = leftLowerLeg;
+            
+            // Left boot
+            const bootGeom = new THREE.BoxGeometry(0.18, 0.15, 0.3);
+            const bootMat = new THREE.MeshStandardMaterial({ 
+                color: 0x1a1a1a, 
+                roughness: 0.6 
+            });
+            const leftBoot = new THREE.Mesh(bootGeom, bootMat);
+            leftBoot.position.set(-0.2, -0.15, 0.05);
+            leftBoot.castShadow = true;
+            group.add(leftBoot);
+            
+            // Right leg
+            const rightUpperLeg = new THREE.Mesh(upperLegGeom, clothMat);
+            rightUpperLeg.position.set(0.2, 0.4, 0);
+            rightUpperLeg.castShadow = true;
+            group.add(rightUpperLeg);
+            
+            const rightLowerLeg = new THREE.Mesh(lowerLegGeom, clothMat);
+            rightLowerLeg.position.set(0.2, 0, 0);
+            rightLowerLeg.castShadow = true;
+            group.add(rightLowerLeg);
+            parts.rightLeg = rightLowerLeg;
+            
+            const rightBoot = new THREE.Mesh(bootGeom, bootMat);
+            rightBoot.position.set(0.2, -0.15, 0.05);
+            rightBoot.castShadow = true;
+            group.add(rightBoot);
+            
+            // Position and rotate to face opponent
+            group.position.x = xPos;
+            group.rotation.y = xPos < 0 ? 0.3 : -0.3;
+            scene.add(group);
+            
+            if (type === 'player') {
+                playerCharacter = group;
+                playerParts = parts;
+            } else {
+                enemyCharacter = group;
+                enemyParts = parts;
+            }
+        }
+
+        // ==========================================
+        // HAND TRACKING
+        // ==========================================
+
         async function initHandTracking() {
-            // Initialize MediaPipe Hands
-            hands = new Hands({
-                locateFile: (file) => {
-                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-                }
-            });
+            try {
+                hands = new Hands({
+                    locateFile: (file) => {
+                        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+                    }
+                });
 
-            hands.setOptions({
-                maxNumHands: 1,
-                modelComplexity: 1,
-                minDetectionConfidence: 0.7,
-                minTrackingConfidence: 0.7
-            });
+                hands.setOptions({
+                    maxNumHands: 1,
+                    modelComplexity: 1,
+                    minDetectionConfidence: 0.7,
+                    minTrackingConfidence: 0.7
+                });
 
-            hands.onResults(onHandResults);
+                hands.onResults(onHandResults);
 
-            // Setup camera
-            const videoElement = document.getElementById('webcam');
-            camera = new Camera(videoElement, {
-                onFrame: async () => {
-                    await hands.send({ image: videoElement });
-                },
-                width: 640,
-                height: 480
-            });
+                const videoElement = document.getElementById('webcam');
+                camera = new Camera(videoElement, {
+                    onFrame: async () => {
+                        if (hands) {
+                            await hands.send({ image: videoElement });
+                        }
+                    },
+                    width: 640,
+                    height: 480
+                });
+            } catch (e) {
+                console.log('Hand tracking init error:', e);
+            }
         }
 
         function onHandResults(results) {
@@ -754,7 +1175,6 @@
         }
 
         function recognizeGesture(landmarks) {
-            // Get key landmarks
             const thumb = landmarks[4];
             const index = landmarks[8];
             const middle = landmarks[12];
@@ -763,7 +1183,6 @@
             const wrist = landmarks[0];
             const indexBase = landmarks[5];
 
-            // Calculate distances
             const thumbIndexDist = distance(thumb, index);
             const fingersClosed = 
                 distance(index, indexBase) < 0.1 &&
@@ -771,19 +1190,16 @@
                 distance(ring, landmarks[13]) < 0.1 &&
                 distance(pinky, landmarks[17]) < 0.1;
 
-            // Check if pointing up
             const pointingUp = index.y < wrist.y - 0.2 && 
                               middle.y > index.y &&
                               ring.y > middle.y;
 
-            // Check for peace sign
             const peacesign = 
                 index.y < indexBase.y - 0.1 &&
                 middle.y < landmarks[9].y - 0.1 &&
                 ring.y > landmarks[13].y &&
                 pinky.y > landmarks[17].y;
 
-            // Gesture recognition
             if (fingersClosed) {
                 return 'punch';
             } else if (peacesign) {
@@ -815,27 +1231,9 @@
                 GAME.currentGesture = gesture;
                 GAME.gestureStartTime = Date.now();
 
-                // Update UI
-                const icons = {
-                    'punch': '✊',
-                    'block': '✋',
-                    'uppercut': '☝️',
-                    'special': '✌️',
-                    'none': '👊'
-                };
-                const names = {
-                    'punch': 'PUNCH',
-                    'block': 'BLOCKING',
-                    'uppercut': 'UPPERCUT',
-                    'special': 'SPECIAL',
-                    'none': 'READY'
-                };
+                updateGestureUI(gesture);
 
-                document.getElementById('gesture-icon').textContent = icons[gesture];
-                document.getElementById('gesture-text').textContent = names[gesture];
-
-                // Execute move
-                if (gesture !== 'none' && gesture !== 'block') {
+                if (gesture !== 'none' && gesture !== 'block' && GAME.canAttack) {
                     executePlayerMove(gesture);
                 }
 
@@ -843,10 +1241,34 @@
             }
         }
 
+        function updateGestureUI(gesture) {
+            const icons = {
+                'punch': '✊',
+                'block': '✋',
+                'uppercut': '☝️',
+                'special': '✌️',
+                'none': '👊'
+            };
+            const names = {
+                'punch': 'PUNCH',
+                'block': 'BLOCKING',
+                'uppercut': 'UPPERCUT',
+                'special': 'SPECIAL',
+                'none': 'READY'
+            };
+
+            document.getElementById('gesture-icon').textContent = icons[gesture];
+            document.getElementById('gesture-text').textContent = names[gesture];
+        }
+
         function executePlayerMove(move) {
+            if (!GAME.canAttack) return;
+            
+            GAME.canAttack = false;
+            setTimeout(() => GAME.canAttack = true, GAME.attackCooldown);
+
             const now = Date.now();
             
-            // Combo system
             if (now - GAME.lastHitTime < 2000) {
                 GAME.combo++;
             } else {
@@ -854,83 +1276,12 @@
             }
             GAME.lastHitTime = now;
 
-            // Show combo
             if (GAME.combo > 1) {
                 showCombo(GAME.combo);
             }
 
-            // Animate player
-            animateAttack(playerCharacter, 'right');
+            animateAttack(playerCharacter, playerParts, 'right');
 
-            // Calculate damage
-            let damage = 0;
-            switch(move) {
-                case 'punch':
-                    damage = 10;
-                    break;
-                case 'uppercut':
-                    damage = 20;
-                    break;
-                case 'special':
-                    damage = 30;
-                    break;
-            }
-
-            // Combo multiplier
-            damage *= (1 + (GAME.combo - 1) * 0.2);
-
-            // Check if enemy is blocking
-            if (GAME.enemyBlocking && Math.random() > 0.3) {
-                damage *= 0.3;
-                showHitEffect('BLOCKED!', 'right', '#ffd700');
-            } else {
-                GAME.enemyHealth = Math.max(0, GAME.enemyHealth - damage);
-                showHitEffect(`-${Math.floor(damage)}`, 'right', '#ff0040');
-                createParticles(enemyCharacter.position, 0xff0040);
-                
-                // AI learns from successful hits
-                AI.patterns.push(move);
-                if (AI.patterns.length > 10) AI.patterns.shift();
-            }
-
-            updateHealth();
-            checkGameOver();
-        }
-
-        function aiTurn() {
-            if (!GAME.started) return;
-
-            const now = Date.now();
-            if (now - AI.lastMove < 1500) return;
-
-            AI.lastMove = now;
-
-            // AI decision making
-            const random = Math.random();
-            let move;
-
-            // Sometimes block
-            if (random < 0.2) {
-                GAME.enemyBlocking = true;
-                setTimeout(() => GAME.enemyBlocking = false, 1000);
-                return;
-            }
-
-            GAME.enemyBlocking = false;
-
-            // Choose attack based on difficulty and patterns
-            if (random < 0.3 + AI.difficulty * 0.2) {
-                move = 'special';
-            } else if (random < 0.6) {
-                move = 'uppercut';
-            } else {
-                move = 'punch';
-            }
-
-            // Animate enemy
-            animateAttack(enemyCharacter, 'left');
-
-            // Calculate damage
             let damage = 0;
             switch(move) {
                 case 'punch':
@@ -944,51 +1295,121 @@
                     break;
             }
 
-            // Difficulty multiplier
-            damage *= (0.8 + AI.difficulty * 0.4);
+            damage *= (1 + (GAME.combo - 1) * 0.15);
 
-            // Check if player is blocking
-            if (GAME.playerBlocking && Math.random() > 0.2) {
-                damage *= 0.3;
-                showHitEffect('BLOCKED!', 'left', '#ffd700');
+            if (GAME.enemyBlocking && Math.random() > 0.3) {
+                damage *= 0.25;
+                showHitEffect('BLOCKED!', 'right', '#ffd700');
             } else {
-                GAME.playerHealth = Math.max(0, GAME.playerHealth - damage);
-                showHitEffect(`-${Math.floor(damage)}`, 'left', '#00b4ff');
-                createParticles(playerCharacter.position, 0x00b4ff);
+                GAME.enemyHealth = Math.max(0, GAME.enemyHealth - damage);
+                showHitEffect(`-${Math.floor(damage)}`, 'right', '#ff0040');
+                createParticles(enemyCharacter.position.clone().add(new THREE.Vector3(0, 1.5, 0)), 0xff0040);
                 
-                // AI gets better over time
-                AI.difficulty = Math.min(1, AI.difficulty + 0.01);
+                AI.patterns.push(move);
+                if (AI.patterns.length > 10) AI.patterns.shift();
             }
 
             updateHealth();
             checkGameOver();
         }
 
-        function animateAttack(character, direction) {
-            const originalX = character.position.x;
-            const targetX = direction === 'right' ? originalX + 2 : originalX - 2;
+        function aiTurn() {
+            if (!GAME.started) return;
+
+            const now = Date.now();
+            const aiCooldown = GAME.mode === 'full' ? 2000 : 1800;
+            if (now - AI.lastMove < aiCooldown) return;
+
+            AI.lastMove = now;
+
+            const random = Math.random();
+            let move;
+
+            if (random < 0.25) {
+                GAME.enemyBlocking = true;
+                setTimeout(() => GAME.enemyBlocking = false, 1200);
+                return;
+            }
+
+            GAME.enemyBlocking = false;
+
+            // AI is slightly easier in full mode due to longer match
+            const difficultyMod = GAME.mode === 'full' ? 0.9 : 1.0;
             
-            // Quick dash forward
-            const duration = 200;
+            if (random < 0.3 + AI.difficulty * 0.15 * difficultyMod) {
+                move = 'special';
+            } else if (random < 0.6) {
+                move = 'uppercut';
+            } else {
+                move = 'punch';
+            }
+
+            animateAttack(enemyCharacter, enemyParts, 'left');
+
+            let damage = 0;
+            switch(move) {
+                case 'punch':
+                    damage = 6;
+                    break;
+                case 'uppercut':
+                    damage = 12;
+                    break;
+                case 'special':
+                    damage = 20;
+                    break;
+            }
+
+            damage *= (0.7 + AI.difficulty * 0.3) * difficultyMod;
+
+            if (GAME.playerBlocking && Math.random() > 0.2) {
+                damage *= 0.25;
+                showHitEffect('BLOCKED!', 'left', '#ffd700');
+            } else {
+                GAME.playerHealth = Math.max(0, GAME.playerHealth - damage);
+                showHitEffect(`-${Math.floor(damage)}`, 'left', '#00b4ff');
+                createParticles(playerCharacter.position.clone().add(new THREE.Vector3(0, 1.5, 0)), 0x00b4ff);
+                
+                AI.difficulty = Math.min(1, AI.difficulty + 0.008);
+            }
+
+            updateHealth();
+            checkGameOver();
+        }
+
+        function animateAttack(character, parts, direction) {
+            const originalX = character.position.x;
+            const targetX = direction === 'right' ? originalX + 1.5 : originalX - 1.5;
+            
+            const duration = 250;
             const startTime = Date.now();
             
             function animate() {
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 
-                if (progress < 0.5) {
-                    character.position.x = originalX + (targetX - originalX) * (progress * 2);
+                // Eased movement
+                const eased = 1 - Math.pow(1 - progress, 3);
+                
+                if (progress < 0.4) {
+                    character.position.x = originalX + (targetX - originalX) * (eased * 2.5);
+                    character.rotation.y += (direction === 'right' ? 0.02 : -0.02);
                 } else {
-                    character.position.x = targetX - (targetX - originalX) * ((progress - 0.5) * 2);
+                    const returnProgress = (progress - 0.4) / 0.6;
+                    character.position.x = targetX - (targetX - originalX) * returnProgress;
+                    character.rotation.y *= 0.95;
                 }
                 
-                character.rotation.y = Math.sin(progress * Math.PI * 2) * 0.3;
+                // Arm punch animation
+                if (parts.rightArm && progress < 0.5) {
+                    parts.rightArm.rotation.x = -Math.sin(progress * Math.PI) * 1.5;
+                }
                 
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
                     character.position.x = originalX;
-                    character.rotation.y = 0;
+                    character.rotation.y = direction === 'right' ? 0.3 : -0.3;
+                    if (parts.rightArm) parts.rightArm.rotation.x = 0;
                 }
             }
             
@@ -996,18 +1417,23 @@
         }
 
         function createParticles(position, color) {
-            const particleCount = 20;
+            const particleCount = 15;
             
             for (let i = 0; i < particleCount; i++) {
-                const geometry = new THREE.SphereGeometry(0.1, 8, 8);
-                const material = new THREE.MeshBasicMaterial({ color });
+                const size = 0.08 + Math.random() * 0.08;
+                const geometry = new THREE.SphereGeometry(size, 6, 6);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color,
+                    transparent: true,
+                    opacity: 1
+                });
                 const particle = new THREE.Mesh(geometry, material);
                 
                 particle.position.copy(position);
                 particle.velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 0.5,
-                    Math.random() * 0.5,
-                    (Math.random() - 0.5) * 0.5
+                    (Math.random() - 0.5) * 0.4,
+                    Math.random() * 0.4 + 0.1,
+                    (Math.random() - 0.5) * 0.4
                 );
                 particle.life = 1;
                 
@@ -1017,17 +1443,19 @@
         }
 
         function updateParticles() {
-            particles.forEach((particle, index) => {
-                particle.life -= 0.02;
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                particle.life -= 0.025;
                 particle.position.add(particle.velocity);
-                particle.velocity.y -= 0.02; // Gravity
+                particle.velocity.y -= 0.015;
                 particle.material.opacity = particle.life;
+                particle.scale.multiplyScalar(0.98);
                 
                 if (particle.life <= 0) {
                     scene.remove(particle);
-                    particles.splice(index, 1);
+                    particles.splice(i, 1);
                 }
-            });
+            }
         }
 
         function showHitEffect(text, side, color) {
@@ -1037,12 +1465,8 @@
             effect.style.color = color;
             effect.style.textShadow = `0 0 20px ${color}`;
             
-            if (side === 'left') {
-                effect.style.left = '30%';
-            } else {
-                effect.style.left = '70%';
-            }
-            effect.style.top = '50%';
+            effect.style.left = side === 'left' ? '30%' : '70%';
+            effect.style.top = '45%';
             
             document.body.appendChild(effect);
             
@@ -1085,8 +1509,10 @@
             } else if (GAME.timer <= 0) {
                 if (GAME.playerHealth > GAME.enemyHealth) {
                     endGame('win');
-                } else {
+                } else if (GAME.playerHealth < GAME.enemyHealth) {
                     endGame('lose');
+                } else {
+                    endGame('draw');
                 }
             }
         }
@@ -1094,11 +1520,17 @@
         function endGame(result) {
             GAME.started = false;
             
+            clearInterval(timerInterval);
+            clearInterval(aiInterval);
+            
             const gameOver = document.getElementById('game-over');
             const resultText = document.getElementById('result-text');
             
             if (result === 'win') {
                 resultText.textContent = 'YOU WIN!';
+                resultText.className = 'game-over-text winner';
+            } else if (result === 'draw') {
+                resultText.textContent = 'DRAW!';
                 resultText.className = 'game-over-text winner';
             } else {
                 resultText.textContent = 'YOU LOSE!';
@@ -1109,6 +1541,63 @@
         }
 
         // ==========================================
+        // KEYBOARD & TOUCH CONTROLS
+        // ==========================================
+
+        function setupControls() {
+            // Keyboard controls
+            document.addEventListener('keydown', (e) => {
+                if (!GAME.started) return;
+                
+                switch(e.key.toLowerCase()) {
+                    case 'q':
+                        triggerMove('punch');
+                        break;
+                    case 'w':
+                        triggerMove('block');
+                        break;
+                    case 'e':
+                        triggerMove('uppercut');
+                        break;
+                    case 'r':
+                        triggerMove('special');
+                        break;
+                }
+            });
+            
+            document.addEventListener('keyup', (e) => {
+                if (e.key.toLowerCase() === 'w') {
+                    GAME.playerBlocking = false;
+                    updateGestureUI('none');
+                }
+            });
+
+            // Touch controls
+            document.querySelectorAll('.touch-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!GAME.started) return;
+                    triggerMove(btn.dataset.move);
+                });
+                
+                btn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    if (!GAME.started) return;
+                    triggerMove(btn.dataset.move);
+                });
+            });
+        }
+
+        function triggerMove(move) {
+            updateGestureUI(move);
+            
+            if (move === 'block') {
+                GAME.playerBlocking = true;
+            } else if (GAME.canAttack) {
+                executePlayerMove(move);
+            }
+        }
+
+        // ==========================================
         // GAME START
         // ==========================================
 
@@ -1116,21 +1605,39 @@
             const mode = document.querySelector('.mode-btn.active').dataset.mode;
             GAME.mode = mode;
             
+            // Set timer based on mode
+            GAME.timer = mode === 'full' ? 150 : 90;
+            
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('video-container').style.display = 'block';
             document.querySelector('.health-container').style.display = 'flex';
             document.querySelector('.game-info').style.display = 'block';
-            document.querySelector('.gesture-display').style.display = 'block';
+            document.querySelector('.gesture-display').style.display = 'flex';
+            document.querySelector('.touch-controls').style.display = 'flex';
+            document.querySelector('.keyboard-hint').style.display = 'block';
+            
+            // Update mode indicator
+            document.getElementById('mode-indicator').textContent = 
+                mode === 'full' ? 'FULL MODE' : 'PRIMITIVE MODE';
+            document.getElementById('timer').textContent = GAME.timer;
             
             initThreeJS();
             await initHandTracking();
-            await camera.start();
+            
+            try {
+                if (camera) await camera.start();
+            } catch (e) {
+                console.log('Camera not available, using buttons/keyboard');
+            }
+            
+            setupControls();
             
             GAME.started = true;
             
-            // Start game loop
-            setInterval(aiTurn, 2000);
-            setInterval(updateTimer, 1000);
+            // Start intervals
+            aiInterval = setInterval(aiTurn, 1500);
+            timerInterval = setInterval(updateTimer, 1000);
+            
             animate();
         }
 
@@ -1138,7 +1645,7 @@
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
+                e.currentTarget.classList.add('active');
             });
         });
 
@@ -1147,23 +1654,39 @@
         // ==========================================
 
         function animate() {
-            if (!GAME.started) return;
-            
-            requestAnimationFrame(animate);
-            
-            // Animate characters (idle)
-            const time = Date.now() * 0.001;
-            if (playerCharacter) {
-                playerCharacter.position.y = Math.sin(time * 2) * 0.1;
+            if (!GAME.started) {
+                cancelAnimationFrame(animationId);
+                return;
             }
+            
+            animationId = requestAnimationFrame(animate);
+            
+            const time = Date.now() * 0.001;
+            
+            // Idle animations
+            if (playerCharacter) {
+                playerCharacter.position.y = Math.sin(time * 2) * 0.05;
+                
+                // Breathing animation for full mode
+                if (GAME.mode === 'full' && playerParts.body) {
+                    playerParts.body.scale.x = 1 + Math.sin(time * 3) * 0.02;
+                    playerParts.body.scale.z = 1 + Math.sin(time * 3) * 0.02;
+                }
+            }
+            
             if (enemyCharacter) {
-                enemyCharacter.position.y = Math.sin(time * 2 + Math.PI) * 0.1;
+                enemyCharacter.position.y = Math.sin(time * 2 + Math.PI) * 0.05;
+                
+                // Enemy idle sway
+                enemyCharacter.rotation.z = Math.sin(time * 1.5) * 0.02;
+                
+                if (GAME.mode === 'full' && enemyParts.body) {
+                    enemyParts.body.scale.x = 1 + Math.sin(time * 3 + 1) * 0.02;
+                    enemyParts.body.scale.z = 1 + Math.sin(time * 3 + 1) * 0.02;
+                }
             }
             
             updateParticles();
-            
-            // Camera shake on hits
-            threeCamera.position.x = Math.sin(time * 20) * 0.02;
             
             renderer.render(scene, threeCamera);
         }
